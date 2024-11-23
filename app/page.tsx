@@ -27,9 +27,8 @@ const Home_Page: React.FC = () => {
       {backgroundImages.map((img, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentImageIndex ? "opacity-30" : "opacity-0"
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentImageIndex ? "opacity-30" : "opacity-0"
+            }`}
         >
           <img
             src={img}
@@ -58,7 +57,7 @@ const Home_Page: React.FC = () => {
             Create unforgettable experiences with our premium event management
             platform
           </p>
-          <Link href="/maine">
+          <Link href="/main">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
