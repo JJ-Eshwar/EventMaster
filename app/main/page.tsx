@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 import ContentComp from "../../components/content";
 
-const RevealOnScroll = dynamic(() => import("../../components/RevealOnScroll"), {
-  ssr: false,
-});
+
 
 interface RevealOnScrollComponentProps {
   children: React.ReactNode;
