@@ -57,7 +57,7 @@ const Home_Page: React.FC = () => {
             Create unforgettable experiences with our premium event management
             platform
           </p>
-          <Link href="/main">
+          <Link href="/about">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
