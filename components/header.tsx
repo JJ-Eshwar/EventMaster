@@ -13,13 +13,11 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const menuItems: MenuItem[] = [
-    { label: "What We Do", href: "/maine/whatwedo" },
-    { label: "Press", href: "#press" },
+    { label: "What We Do", href: "/about/whatwedo" },
+    // { label: "Press", href: "#press" },
     { label: "About Us", href: "#about" },
-    { label: "Contact", href: "/maine/contact" },
-    { label: "Respnse", href: "/maine/contact-response" },
-    { label: "Add Event", href: "/maine/add-event" },
-    { label: "UpComing Events", href: "/maine/upcoming-events" },
+    { label: "Contact", href: "/about/contact" },
+    { label: "Add Event", href: "/about/add-event" },
   ];
 
   return (
@@ -30,7 +28,7 @@ const Header: React.FC = () => {
             <Link href='/about'>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text hover:from-purple-500 hover:via-pink-600 hover:to-red-600 transition-all duration-300">
               <span className="em-initial">EM</span>
-              <span className="em-full hidden">EventMaster</span>
+              <span className="em-full">EventMaster</span>
               </h1>
             </Link>
           </div>

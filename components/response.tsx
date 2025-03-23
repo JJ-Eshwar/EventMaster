@@ -1,21 +1,21 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 
+// components/response.tsx
 interface ContactData {
   id: string;
-  event: string;
   firstname: string;
   lastname: string;
   email: string;
-  phone: string;
-  description: string;
-  createdAt: {
-    seconds: number;
-  };
-}
+  phone: string;   // If present in your schema
+  event: string;   // If present in your schema
+  description: string; // If present in your schema
+  createdAt: { seconds: number };
+};
+
 
 interface ResponseProps {
-  ContactData: ContactData[];
+  ContactData:any;
 }
 
 const Response: FC<ResponseProps> = ({ ContactData }) => {
@@ -24,7 +24,7 @@ const Response: FC<ResponseProps> = ({ ContactData }) => {
       <div>
         <h1 className="text-2xl font-bold mb-4 text-center">Contact Response</h1>
         <div className="bg-gray-900 text-white py-8">
-          {ContactData.map((contactdata) => (
+          {ContactData.map((contactdata: { id: React.Key | null | undefined; event: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; firstname: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; lastname: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; email: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; phone: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; description: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; createdAt: { seconds: number; }; }) => (
             <motion.div
               key={contactdata.id}
               className="bg-gradient-to-r from-indigo-500 to-purple-500 p-6 rounded-lg shadow-lg mb-6"

@@ -1,9 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { db } from "../firebase/clientApp";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from "next/cache";
+
+const prisma = new PrismaClient();
+
 
 interface EventData {
   organization: string;
@@ -16,7 +18,7 @@ interface EventData {
   description: string;
   name: string;
   fee: string;
-  createdAt: Timestamp;
+  createdAt: Date;
 }
 
 export default async function createEvent(formData: FormData): Promise<{ success: boolean; id?: string; errors?: string[] }> {
@@ -32,7 +34,7 @@ export default async function createEvent(formData: FormData): Promise<{ success
       description: formData.get("description") as string,
       name: formData.get("name") as string,
       fee: formData.get("fee") as string,
-      createdAt: Timestamp.now(),
+      createdAt: new Date(),
     };
 
     // Validate required fields
@@ -54,20 +56,22 @@ export default async function createEvent(formData: FormData): Promise<{ success
       return { success: false, errors };
     }
 
-    // Add document to Firestore
-    const docRef = await addDoc(collection(db, "Event Data"), Event_Data);
-    
-    // Revalidate the upcoming events page
-    revalidatePath("/maine/upcoming-events");
-    
-    // Return success result
-    return { success: true, id: docRef.id };
+
+    const event = await prisma.event_Data.create({
+      data: Event_Data,
+    });
+
+    revalidatePath("/about/upcoming-events");
+
+    return { success: true, id: event.id.toString() };
+
   } catch (error) {
-    console.error("Error adding event to Firestore:", error);
-    return { 
-      success: false, 
+    console.error("Error adding event to database:", error);
+    return {
+      success: false,
       errors: [(error as Error).message || "An error occurred while creating the event"]
     };
+  } finally {
+    await prisma.$disconnect();
   }
 }
-

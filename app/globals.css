@@ -19,3 +19,26 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.em-initial {
+  display: inline-block; /* Ensure proper layout */
+}
+
+.em-full {
+  display: none;  /* Initially hidden */
+  white-space: nowrap; /* Prevent wrapping to a new line */
+}
+
+
+h1:hover .em-initial {
+  display: none; /* Hide on hover */
+}
+
+h1:hover .em-full {
+  display: inline-block; /* Show on hover */
+}
+
+
+
+
+

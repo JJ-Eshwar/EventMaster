@@ -1,12 +1,61 @@
+'use client';
 import React, { FC } from "react";
+import { useState } from 'react';
 import { motion } from "framer-motion";
 import FormSubmit from "./ContactFormStatus";
 
-interface ContactFormProps {
-  action: string;
+// Define the type for your contact data
+interface ContactData {
+  firstname: string;
+  lastname: string;
+  phone: string;
+  email: string;
+  event: string;
+  description: string;
 }
 
-const Contact_Form: FC<ContactFormProps> = ({ action }) => {
+
+const Contact_Form: React.FC = () => {
+  const [message, setMessage] = useState<string | null>(null); // For success/error messages
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+    const form = event.currentTarget; 
+    const formData = new FormData(form);
+    const contact_Data: ContactData = {
+        firstname: formData.get("firstname") as string,
+        lastname: formData.get("lastname") as string,
+        phone: formData.get("phone") as string,
+        email: formData.get("email") as string,
+        event: formData.get("event") as string,
+        description: formData.get("description") as string,
+    };
+    console.log("Data being sent to server:", contact_Data);
+    try {
+      const response = await fetch('contact', {  // Send data to the API route
+        method: 'POST',
+        body: JSON.stringify(contact_Data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log("Data being sent:", contact_Data);
+      if (response.ok) {
+        setMessage('Message sent successfully!'); // Set success message
+        form.reset(); // Clear the form
+      } else {
+        const data = await response.json(); // Get error message from server if any.
+        setMessage(data.error || 'Failed to send message.'); 
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setMessage('Failed to send message. Please try again later.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <>
       <motion.div
@@ -30,7 +79,7 @@ const Contact_Form: FC<ContactFormProps> = ({ action }) => {
             transition={{ delay: 0.2 }}
             className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
           >
-            <form className="space-y-8" action={action}>
+            <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <motion.div whileHover={{ scale: 1.02 }} className="group">
                   <label

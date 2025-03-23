@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import EventFormSubmit from "./EventFormStatus";
-import ClientImageUpload from "./ClientImage";
 
 interface State {
   message?: {
@@ -44,9 +43,8 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
 
         {state?.message && (
           <div
-            className={`mb-6 p-4 rounded-lg ${
-              state.message.success ? "bg-green-500" : "bg-red-500"
-            } text-white`}
+            className={`mb-6 p-4 rounded-lg ${state.message.success ? "bg-green-500" : "bg-red-500"
+              } text-white`}
           >
             {state.message.success
               ? "Event created successfully!"
@@ -109,9 +107,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
               />
             </motion.div>
 
-            <motion.div variants={fadeInUp}>
-              <ClientImageUpload />
-            </motion.div>
+
 
             <motion.div className="space-y-2" variants={fadeInUp}>
               <label
@@ -127,37 +123,40 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
                 className="mt-1 block w-full rounded-lg bg-gray-900 border border-gray-700 text-gray-100 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ease-in-out"
               />
             </motion.div>
-
-            <motion.div className="space-y-2" variants={fadeInUp}>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-purple-300"
-              >
-                Email-Id
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="mt-1 block w-full rounded-lg bg-gray-900 border border-gray-700 text-gray-100 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ease-in-out"
-              />
-            </motion.div>
-
-            <motion.div className="space-y-2 sm:col-span-2" variants={fadeInUp}>
-              <label
-                htmlFor="shortnote"
-                className="block text-sm font-medium text-purple-300"
-              >
-                Short Note About The Event
-              </label>
-              <textarea
-                id="shortnote"
-                name="shortnote"
-                rows={3}
-                className="mt-1 block w-full rounded-lg bg-gray-900 border border-gray-700 text-gray-100 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ease-in-out"
-              />
-            </motion.div>
-
+            <div className="flex grid-col gap-4">
+              <div className="flex">
+                <motion.div className="space-y-2" variants={fadeInUp}>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-purple-300 flex-1"
+                  >
+                    Email-Id
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="mt-1 block w-85 rounded-lg bg-gray-900 border border-gray-700 text-gray-100 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ease-in-out"
+                  />
+                </motion.div>
+              </div>
+              <div className="flex ">
+                <motion.div className="space-y-2 sm:col-span-2" variants={fadeInUp}>
+                  <label
+                    htmlFor="shortnote"
+                    className="block text-sm font-medium text-purple-300"
+                  >
+                    Short Note About The Event
+                  </label>
+                  <input
+                    type="text"
+                    id="shortnote"
+                    name="shortnote"
+                    className="mt-1 block w-full rounded-lg bg-gray-900 border border-gray-700 text-gray-100 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ease-in-out"
+                  />
+                </motion.div>
+              </div>
+            </div>
             <motion.div className="space-y-2 sm:col-span-2" variants={fadeInUp}>
               <label
                 htmlFor="description"
