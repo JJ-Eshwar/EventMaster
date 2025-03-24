@@ -61,7 +61,7 @@ export default async function createEvent(formData: FormData): Promise<{ success
       data: Event_Data,
     });
 
-    revalidatePath("/about/upcoming-events");
+    // revalidatePath("/about/upcoming-events");
 
     return { success: true, id: event.id.toString() };
 
