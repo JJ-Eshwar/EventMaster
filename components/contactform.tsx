@@ -14,7 +14,6 @@ interface ContactData {
   description: string;
 }
 
-
 const Contact_Form: React.FC = () => {
   const [message, setMessage] = useState<string | null>(null); // For success/error messages
   const [submitting, setSubmitting] = useState(false);
@@ -22,7 +21,7 @@ const Contact_Form: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitting(true);
-    const form = event.currentTarget; 
+    const form = event.currentTarget;
     const formData = new FormData(form);
     const contact_Data: ContactData = {
         firstname: formData.get("firstname") as string,
@@ -34,7 +33,7 @@ const Contact_Form: React.FC = () => {
     };
     console.log("Data being sent to server:", contact_Data);
     try {
-      const response = await fetch('contact', {  // Send data to the API route
+      const response = await fetch('/api/contact', {  // Send data to the API route
         method: 'POST',
         body: JSON.stringify(contact_Data),
         headers: {
@@ -47,7 +46,7 @@ const Contact_Form: React.FC = () => {
         form.reset(); // Clear the form
       } else {
         const data = await response.json(); // Get error message from server if any.
-        setMessage(data.error || 'Failed to send message.'); 
+        setMessage(data.error || 'Failed to send message.');
       }
     } catch (error) {
       console.error("Error submitting form:", error);
