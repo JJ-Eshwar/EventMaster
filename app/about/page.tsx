@@ -42,6 +42,17 @@ const RevealOnScrollComponent: FC<RevealOnScrollComponentProps> = ({ children, d
   );
 };
 
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Stat {
+  number: string;
+  label: string;
+}
+
 const EventLanding: FC = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -49,7 +60,7 @@ const EventLanding: FC = () => {
     setIsMounted(true);
   }, []);
 
-  const features: Array<{ title: string; description: string; icon: string }> = [
+  const features: Array<Feature> = [
     {
       title: "Luxury Events",
       description:
@@ -69,7 +80,7 @@ const EventLanding: FC = () => {
     },
   ];
 
-  const stats: Array<{ number: string; label: string }> = [
+  const stats: Array<Stat> = [
     { number: "500+", label: "Events Managed" },
     { number: "50+", label: "Global Venues" },
     { number: "98%", label: "Client Satisfaction" },
@@ -106,7 +117,7 @@ const EventLanding: FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-lg font-semibold hover:bg-gradient-to-r hover-from-purple-600 hover-to-pink-600 transition-all duration=300"
+                  className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-lg font-semibold hover:bg-gradient-to-r hover-from-purple-600 hover-to-pink-600 transition-all duration-300"
                 >
                   Start Planning
                 </motion.button>
@@ -144,12 +155,12 @@ const EventLanding: FC = () => {
             <RevealOnScrollComponent key={`stat-${index}`} delay={index * 0.2}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-gray-800/30 to-purple-900/20 p=6 rounded-xl backdrop-blur-sm"
+                className="bg-gradient-to-br from-gray-800/30 to-purple-900/20 p-6 rounded-xl backdrop-blur-sm"
               >
-                <div className="text-3xl md:text=4xl font-bold text-transparent bg-clipp-text bg-gradient-to-r from-purple400 to-pink400 mb=2">
+                <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
                   {stat.number}
                 </div>
-                <div className="text-gray400">{stat.label}</div>
+                <div className="text-gray-400">{stat.label}</div>
               </motion.div>
             </RevealOnScrollComponent>
           ))}
@@ -157,23 +168,23 @@ const EventLanding: FC = () => {
       </section>
 
       <RevealOnScrollComponent>
-        <section className="max-w=7xl mx-auto px=4 sm:px=6 lg:px=8 py=24">
-          <div className="relative bg-gradient-to-br from-purple900/50 to-pink900/50 rounded=3xl overflow-hidden">
-            <div className="absolute inset-zero bg-black/20 backdrop-blur-sm" />
-            <div className="relative p12 md:p20 text-center">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="relative bg-gradient-to-br from-purple-900/50 to-pink-900/50 rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
+            <div className="relative p-12 md:p-20 text-center">
               <RevealOnScrollComponent delay={0.2}>
-                <h2 className="text=3xl md:text=4xl font-bold text-white mb=6">Ready to Create Something Extraordinary?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Create Something Extraordinary?</h2>
               </RevealOnScrollComponent>
 
               <RevealOnScrollComponent delay={0.4}>
-                <p className="text-lg text-gray300 mb=8 max-w=2xl mx-auto">Let&apos;s collaborate to bring your vision to life with our world-class event planning expertise</p>
+                <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Let&apos;s collaborate to bring your vision to life with our world-class event planning expertise</p>
               </RevealOnScrollComponent>
 
               <RevealOnScrollComponent delay={0.6}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px8 py4 bg-white text-purple900 rounded-full text-lg font-semibold hover:bg-gray100 transform transition-all duration300"
+                  className="px-8 py-4 bg-white text-purple-900 rounded-full text-lg font-semibold hover:bg-gray-100 transform transition-all duration-300"
                 >
                   Schedule a Consultation
                 </motion.button>
