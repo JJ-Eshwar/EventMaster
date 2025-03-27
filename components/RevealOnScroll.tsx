@@ -1,14 +1,17 @@
 // RevealOnScroll.tsx
-'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface RevealOnScrollProps {
   children: React.ReactNode;
   delay?: number;
 }
 
-const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, delay = 0 }) => {
+const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
+  children,
+  delay = 0,
+}) => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -20,10 +23,9 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, delay = 0 }) 
     if (ref.current) observer.observe(ref.current);
 
     return () => {
-       observer?.disconnect(); // Use disconnect and optional chaining
+      observer?.disconnect(); // Use disconnect and optional chaining
     };
-  }, []); // empty dependency array is ideal here
-
+  }, []);
 
   return (
     <motion.div
@@ -31,6 +33,11 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, delay = 0 }) 
       initial={{ opacity: 0, y: 75 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 75 }}
       transition={{ duration: 0.8, delay: delay }}
+      style={{
+        // Prevent animation on initial render
+        opacity: 1,
+        y: 0,
+      }}
     >
       {children}
     </motion.div>
@@ -38,4 +45,3 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, delay = 0 }) 
 };
 
 export default RevealOnScroll;
-

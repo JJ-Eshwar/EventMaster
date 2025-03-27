@@ -1,24 +1,28 @@
-"use client"
-import React, { FC } from 'react';
-import createEvent from "../../../components/addeventpost";
+"use client";
+
+import React, { FC } from "react";
 import { useActionState } from "react";
 import AddEventForm from "../../../components/addeventform";
+import { addEventAction } from "./action";
 
-interface InitialState {
-  message: string | null;
+interface State {
+  message?: {
+    success?: boolean;
+    errors?: string[];
+  };
 }
-
-const initialState: InitialState = {
-  message: null,
-};
 
 const AddEvent: FC = () => {
-  const [state, formAction] = useActionState(createEvent, initialState);
+  const [state, formAction] = useActionState<State, FormData>(
+    addEventAction,
+    { message: { success: false, errors: [] } }
+  );
+
   return (
     <>
-      <AddEventForm action={createEvent} state={state} />
+      <AddEventForm state={state} formAction={formAction} />
     </>
   );
-}
+};
 
 export default AddEvent;

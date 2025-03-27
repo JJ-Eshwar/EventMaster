@@ -12,7 +12,7 @@ interface State {
 }
 
 interface AddEventFormProps {
-  action: string;
+  formAction: (formData: FormData) => void;
   state?: State;
 }
 
@@ -22,19 +22,17 @@ const fadeInUp = {
   exit: { opacity: 0, y: -20 },
 };
 
-const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
-  const [minDate, setMinDate] = useState<string>("");
+const AddEventForm: React.FC<AddEventFormProps> = ({ formAction, state }) => {
+  // Calculate minDate outside of useEffect
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, "0");
+  const day = today.getDate().toString().padStart(2, "0");
+  const minDate = `${year}-${month}-${day}`;
+
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [feeError, setFeeError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-indexed
-    const day = today.getDate().toString().padStart(2, "0");
-    setMinDate(`${year}-${month}-${day}`);
-  }, []);
 
   // Function to validate phone number input
   const handlePhoneChange = (
@@ -42,10 +40,9 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
   ) => {
     const input = event.target;
     const value = input.value;
-    const numericValue = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+    const numericValue = value.replace(/[^0-9]/g, "");
     input.value = numericValue;
 
-    // Validate length
     if (numericValue.length !== 10) {
       setPhoneError("Phone number must be 10 digits.");
       input.setCustomValidity("Phone number must be 10 digits.");
@@ -61,7 +58,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
   ) => {
     const input = event.target;
     const value = input.value;
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email regex
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
     if (!emailRegex.test(value) && value.length > 0) {
       setEmailError("Please enter a valid email address.");
@@ -79,7 +76,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
   const handleFeeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target;
     const value = input.value;
-    const numericValue = parseInt(value, 10); // Parse as integer
+    const numericValue = parseInt(value, 10);
 
     if (numericValue < 5) {
       setFeeError("Registration fee must be at least 5.");
@@ -108,23 +105,12 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
           </motion.h1>
         </div>
 
-        {state?.message && (
-          <div
-            className={`mb-6 p-4 rounded-lg ${
-              state.message.success ? "bg-green-500" : "bg-red-500"
-            } text-white`}
-          >
-            {state.message.success
-              ? "Event created successfully!"
-              : state.message.errors?.join(", ") || "An error occurred"}
-          </div>
-        )}
-
+        
         <motion.form
           className="space-y-6 backdrop-blur-lg bg-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl w-full"
           variants={fadeInUp}
           method="POST"
-          action={action}
+          action={formAction}
         >
           <div className="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-2">
             <motion.div className="space-y-2" variants={fadeInUp}>
@@ -170,7 +156,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
                 type="date"
                 id="eventdate"
                 name="eventdate"
-                min={minDate} // Set the minimum date here
+                min={minDate} // Use the calculated minDate here
                 className="mt-1 block w-full rounded-lg bg-gray-900 border border-gray-700 text-gray-100 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ease-in-out"
                 required
               />
@@ -296,7 +282,6 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ action, state }) => {
                 <p className="text-red-500 text-sm">{feeError}</p>
               )}
             </motion.div>
-            
           </div>
 
           <motion.div

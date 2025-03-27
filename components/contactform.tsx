@@ -1,10 +1,9 @@
 'use client';
-import React, { FC } from "react";
-import { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { motion } from "framer-motion";
 import FormSubmit from "./ContactFormStatus";
 
-// Define the type for your contact data
+
 interface ContactData {
   firstname: string;
   lastname: string;
