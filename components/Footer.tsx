@@ -76,19 +76,19 @@ export function Footer() {
                   About
                 </Link>
                 <Link
-                  href="/pricing"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Pricing
                 </Link>
                 <Link
-                  href="/blog"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Blog
                 </Link>
                 <Link
-                  href="/careers"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Careers
@@ -100,25 +100,25 @@ export function Footer() {
               <p className="font-medium text-white">Help</p>
               <nav className="flex flex-col space-y-2">
                 <Link
-                  href="/faq"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   FAQ
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Contact
                 </Link>
                 <Link
-                  href="/privacy"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Privacy
                 </Link>
                 <Link
-                  href="/terms"
+                  href="/"
                   className="hover:text-white transition-colors duration-300"
                 >
                   Terms
@@ -136,22 +136,19 @@ export function Footer() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="ghost" size="sm" asChild>
-                <Link
-                  href="/privacy"
-                  className="text-xs hover:text-white transition-colors duration-300"
-                >
-                  Privacy Policy
-                </Link>
-              </Button>
-              <Button variant="ghost" size="sm" asChild>
-                <Link
-                  href="/terms"
-                  className="text-xs hover:text-white transition-colors duration-300"
-                >
-                  Terms of Service
-                </Link>
-              </Button>
+              <Link
+                href="/"
+                className="text-xs hover:text-white transition-colors duration-300"
+              >
+                Privacy Policy
+              </Link>
+
+              <Link
+                href="/"
+                className="text-xs hover:text-white transition-colors duration-300"
+              >
+                Terms of Service
+              </Link>
             </div>
           </div>
         </div>
