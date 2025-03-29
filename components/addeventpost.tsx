@@ -1,7 +1,6 @@
 "use server";
 
 import { PrismaClient } from '@prisma/client';
-import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -44,7 +43,7 @@ export default async function createEvent(formData: FormData): Promise<{ success
 
     console.log("Event_Data from form:", Event_Data);
 
-    let errors: string[] = [];
+    const errors: string[] = [];
     if (!Event_Data.organization || Event_Data.organization.trim().length === 0) {
       errors.push("Organization is required");
     }

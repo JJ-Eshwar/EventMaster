@@ -1,10 +1,13 @@
-'use client'; 
+'use client';
 
-import { useFormStatus } from 'react-dom';  
+import { useFormStatus } from 'react-dom';
 import React, { FC } from 'react';
 
-const FormSubmit: FC = () => {
-  const status = useFormStatus(); 
+interface FormSubmitProps {
+  submitting: boolean;
+}
+const FormSubmit: FC<FormSubmitProps> = ({ }) => {
+  const status = useFormStatus();
 
   if (status.pending) {
     return (
@@ -14,7 +17,7 @@ const FormSubmit: FC = () => {
     );
   }
   return (
-    <button  
+    <button
       type="submit"
       className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold text-white shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
     >

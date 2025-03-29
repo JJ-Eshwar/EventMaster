@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import EventFormSubmit from "./EventFormStatus";
 
@@ -22,7 +22,7 @@ const fadeInUp = {
   exit: { opacity: 0, y: -20 },
 };
 
-const AddEventForm: React.FC<AddEventFormProps> = ({ formAction, state }) => {
+const AddEventForm: React.FC<AddEventFormProps> = ({ formAction}) => {
   // Calculate minDate outside of useEffect
   const today = new Date();
   const year = today.getFullYear();

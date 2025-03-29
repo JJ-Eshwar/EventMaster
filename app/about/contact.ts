@@ -5,14 +5,10 @@ import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient();
 
-export async function POST(request: Request) {
+export async function POST() {
   try {
-    const contactData = await request.json();
-
-    const data = await prisma.contact_Data.create({ // Make sure "contact" matches your Prisma model name
-      data: contactData,
-    });
-
+    
+    
      return NextResponse.json({ message: "Message sent successfully!" }); // Send a JSON response
 
   } catch (error) {
@@ -22,4 +18,3 @@ export async function POST(request: Request) {
     await prisma.$disconnect();  // Important: Disconnect Prisma Client
   }
 }
-

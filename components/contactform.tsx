@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, FC } from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import FormSubmit from "./ContactFormStatus";
 
@@ -23,12 +23,12 @@ const Contact_Form: React.FC = () => {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const contact_Data: ContactData = {
-        firstname: formData.get("firstname") as string,
-        lastname: formData.get("lastname") as string,
-        phone: formData.get("phone") as string,
-        email: formData.get("email") as string,
-        event: formData.get("event") as string,
-        description: formData.get("description") as string,
+      firstname: formData.get("firstname") as string,
+      lastname: formData.get("lastname") as string,
+      phone: formData.get("phone") as string,
+      email: formData.get("email") as string,
+      event: formData.get("event") as string,
+      description: formData.get("description") as string,
     };
     console.log("Data being sent to server:", contact_Data);
     try {
@@ -191,8 +191,11 @@ const Contact_Form: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 className="flex justify-center"
               >
-                <FormSubmit />
+                <FormSubmit submitting={submitting}/>
               </motion.div>
+              {message && (
+                <p className="text-center mt-4 text-green-500">{message}</p>)}
+
             </form>
           </motion.div>
         </div>
