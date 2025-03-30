@@ -193,8 +193,7 @@ const Contact_Form: React.FC = () => {
               >
                 <FormSubmit submitting={submitting}/>
               </motion.div>
-              {message && (
-                <p className="text-center mt-4 text-green-500">{message}</p>)}
+              
 
             </form>
           </motion.div>
