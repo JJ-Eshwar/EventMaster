@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Link from "next/link";
 
-interface Service {
+export interface Service {
   title: string;
   description: string;
   image: string;
   href: string;
 }
 
-const services: Service[] = [
+export const services: Service[] = [
   {
     title: "Social Events",
     description:
@@ -112,7 +112,7 @@ const Wedo: FC = () => {
                   </p>
                 </div>
                 <div className="mt-6">
-                  <Link href={`/about/whatwedo/building`}
+                  <Link href={`/about/whatwedo/${service.href}`}
                     className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium 
                     hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-0.5 transition-all duration-200"
                   >
