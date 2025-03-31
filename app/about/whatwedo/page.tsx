@@ -112,7 +112,7 @@ const Wedo: FC = () => {
                   </p>
                 </div>
                 <div className="mt-6">
-                  <Link href={`/about/whatwedo/${service.href}`}
+                  <Link href={`/about/whatwedo/building`}
                     className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium 
                     hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-0.5 transition-all duration-200"
                   >

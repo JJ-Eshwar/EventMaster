@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import React, { useEffect, useState, ReactNode } from "react";
+import React, { useEffect, useState, FC, ReactNode } from "react";
 
 const RevealOnScroll = dynamic(() => import("./RevealOnScroll"), {
   ssr: false,
@@ -11,7 +11,7 @@ interface RevealOnScrollComponentProps {
   delay?: number;
 }
 
-const RevealOnScrollComponent: React.FC<RevealOnScrollComponentProps> = ({ children, delay = 0 }) => {
+const RevealOnScrollComponent: FC<RevealOnScrollComponentProps> = ({ children, delay = 0 }) => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
 
@@ -39,7 +39,7 @@ const RevealOnScrollComponent: React.FC<RevealOnScrollComponentProps> = ({ child
   );
 };
 
-export default function ContentComp() {
+const ContentComp: FC = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -73,7 +73,7 @@ export default function ContentComp() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto sm:px-6 lg:px-8 text-center"
         >
           <motion.div
             variants={textVariants}
@@ -90,10 +90,10 @@ export default function ContentComp() {
               </span>
             </RevealOnScrollComponent>
           </motion.div>
-          <RevealOnScrollComponent delay={0.2}>
+          <RevealOnScrollComponent delay={0.4}>
             <motion.div
               variants={textVariants}
-              className="mb-6 text-3xl md:text-5xl font-bold leading-relaxed tracking-tight"
+              className="mb-6 text-3xl md:text-4xl font-bold leading-relaxed tracking-tight"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600">
                 We are{" "}
@@ -119,3 +119,5 @@ export default function ContentComp() {
     </>
   );
 }
+
+export default ContentComp;

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, FC, ReactNode } from "react";
-
+import Link from "next/link";
 import { motion } from "framer-motion";
 import ContentComp from "../../components/content";
 import { PricingSection } from "@/components/PricingSection";
@@ -117,13 +117,15 @@ const EventLanding: FC = () => {
               </RevealOnScrollComponent>
 
               <RevealOnScrollComponent delay={0.6}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-base md:text-lg font-semibold hover:bg-gradient-to-r hover-from-purple-600 hover-to-pink-600 transition-all duration-300"
-                >
-                  Start Planning
-                </motion.button>
+                <Link href="/about/add-event">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-base md:text-lg font-semibold hover:bg-gradient-to-r hover-from-purple-600 hover-to-pink-600 transition-all duration-300"
+                  >
+                    Start Planning
+                  </motion.button>
+                </Link>
               </RevealOnScrollComponent>
             </div>
           </div>

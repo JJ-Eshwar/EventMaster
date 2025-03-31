@@ -47,31 +47,31 @@ export function PricingSection() {
                     } p-px`}
                 >
                   <div
-                    className={`rounded-xl md:rounded-2xl p-4 md:p-6 h-full ${plan.highlighted
+                    className={`rounded-2xl p-6 h-full ${plan.highlighted
                         ? "bg-gray-900 dark:bg-gray-900"
                         : "bg-transparent"
                       }`}
                   >
-                    <div className="space-y-3 md:space-y-4">
-                      <h3 className="text-lg md:text-xl font-semibold text-white dark:text-white">
+                    <div className="space-y-4 text-primary">
+                      <h3 className="text-xl md:text-xl font-semibold text-white dark:text-white">
                         {plan.name}
                       </h3>
-                      <div className="text-2xl md:text-3xl font-bold text-white dark:text-white">
+                      <div className="text-3xl md:text-3xl font-bold text-white dark:text-white">
                         {plan.price}
                       </div>
-                      <ul className="space-y-2 md:space-y-3">
+                      <ul className="space-y-3">
                         {plan.features.map((feature) => (
                           <li
                             key={feature}
                             className="flex items-center gap-2 text-gray-400 dark:text-gray-300 text-sm"
                           >
                             <Check className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
-                            <span>{feature}</span>
+                            <span className="text-muted-foreground">{feature}</span>
                           </li>
                         ))}
                       </ul>
                       <Button
-                        className={`w-full text-sm md:text-base ${plan.highlighted
+                        className={`w-full text-primary md:text-base ${plan.highlighted
                             ? "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
                             : "bg-gray-700 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-300 dark:text-gray-100"
                           }`}
