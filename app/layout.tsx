@@ -9,6 +9,10 @@ import {
 } from '@clerk/nextjs'
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "@/components/header";
+import { Footer } from "@/components/Footer";
+import { Providers } from "@/components/providers/Providers";
+import { Appbar } from "@/components/Appbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,16 +41,13 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-
-          {children}
+          <Providers>
+          <div className="relative flex min-h-screen flex-col">
+            <Appbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </Providers>
         </body>
       </html>
     </ClerkProvider>

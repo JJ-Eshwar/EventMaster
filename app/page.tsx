@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { SignInButton, SignedOut } from "@clerk/nextjs";
 
 const backgroundImages: string[] = [
   "https://inspiredoccasionskc.com/wp-content/uploads/2020/09/1S-Starry-Dinner-1536x1024.jpg",
@@ -27,8 +27,9 @@ const Home_Page: React.FC = () => {
       {backgroundImages.map((img, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentImageIndex ? "opacity-30" : "opacity-0"
-            }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-30" : "opacity-0"
+          }`}
         >
           <img
             src={img}
@@ -57,16 +58,20 @@ const Home_Page: React.FC = () => {
             Create unforgettable experiences with our premium event management
             platform
           </p>
-          <Link href="/about">
-            <motion.button
+          <SignedOut>
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-semibold text-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:shadow-purple-500/25"
             >
-              Get Started
-              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </Link>
+              <SignInButton mode="modal">
+                <span className="flex items-center">
+                  Get Started
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </SignInButton>
+            </motion.div>
+          </SignedOut>
         </motion.div>
 
         <div className=" absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent" />
@@ -78,4 +83,3 @@ const Home_Page: React.FC = () => {
 };
 
 export default Home_Page;
-
