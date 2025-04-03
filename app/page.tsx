@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const backgroundImages: string[] = [
   "https://inspiredoccasionskc.com/wp-content/uploads/2020/09/1S-Starry-Dinner-1536x1024.jpg",
@@ -58,20 +60,20 @@ const Home_Page: React.FC = () => {
             Create unforgettable experiences with our premium event management
             platform
           </p>
-          <SignedOut>
+          <SignedIn>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-semibold text-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:shadow-purple-500/25"
             >
-              <SignInButton mode="modal">
+              <Link href="/about">
                 <span className="flex items-center">
                   Get Started
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </SignInButton>
+              </Link>
             </motion.div>
-          </SignedOut>
+          </SignedIn>
         </motion.div>
 
         <div className=" absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent" />

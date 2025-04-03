@@ -1,5 +1,4 @@
 
-import Header from "../../components/header";
 
 import { ReactNode } from "react";
 
@@ -16,7 +15,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="en">
       <body>
-        <Header />
+        
         {children}
       </body>
     </html>
