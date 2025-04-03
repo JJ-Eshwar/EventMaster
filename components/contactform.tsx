@@ -70,6 +70,11 @@ const Contact_Form: React.FC = () => {
           >
             Drop us a Note
           </motion.h1>
+          {message && (
+            <div className="text-center mb-8">
+              <p className={message.includes('successfully') ? "text-green-500" : "text-red-500"}>{message}</p>
+            </div>
+          )}
 
           <motion.div
             initial={{ y: 20, opacity: 0 }}
