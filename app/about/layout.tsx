@@ -1,5 +1,6 @@
 
 
+import { ClerkProvider } from "@clerk/nextjs";
 import { ReactNode } from "react";
 
 export const metadata = {
@@ -13,11 +14,13 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
-    <html lang="en">
-      <body>
-        
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
