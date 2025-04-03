@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+
 import React, { useEffect, useState, FC, ReactNode } from "react";
 
-const RevealOnScroll = dynamic(() => import("./RevealOnScroll"), {
-  ssr: false,
-});
 
 interface RevealOnScrollComponentProps {
   children: ReactNode;
