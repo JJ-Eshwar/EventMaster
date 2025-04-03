@@ -2,7 +2,7 @@
 import React, { FC } from "react";
 import { services, Service } from "../page"; // Import the services array and the Service interface
 
-interface ServiceDetailPageProps {
+type ServiceDetailPageProps ={
   params: { slug: string };
 }
 
