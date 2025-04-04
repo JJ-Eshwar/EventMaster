@@ -34,4 +34,5 @@ export const plans = [
       ],
       highlighted: false,
     },
-  ];
+];
+  

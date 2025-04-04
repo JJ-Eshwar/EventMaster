@@ -35,6 +35,7 @@ export default async function createEvent(formData: FormData): Promise<{ success
       shortnote: formData.get("shortnote") as string,
       typeofEvent: formData.get("typeofEvent") as string || undefined,
       description: formData.get("description") as string,
+      
       firstname: firstname,
       lastname: lastname,
       fee: parseInt(formData.get("fee") as string, 10),

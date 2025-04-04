@@ -233,6 +233,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ formAction}) => {
                 required
               />
             </motion.div>
+            
 
             <motion.div className="space-y-2 sm:col-span-2" variants={fadeInUp}>
               <label

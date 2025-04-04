@@ -1,17 +1,16 @@
 "use client";
-import React, { FC ,useRef} from "react";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import React, { FC, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 
-export interface Service {
+interface EventType {
   title: string;
   description: string;
   image: string;
   href: string;
 }
 
-export const services: Service[] = [
+const eventTypes: EventType[] = [
   {
     title: "Social Events",
     description:
@@ -89,7 +88,7 @@ const Wedo: FC = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {services.map((service: Service, index: number) => (
+          {eventTypes.map((eventType: EventType, index: number) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -98,21 +97,22 @@ const Wedo: FC = () => {
               <div className="flex flex-col h-full">
                 <div className="aspect-video mb-6 overflow-hidden rounded-xl">
                   <img
-                    src={service.image}
-                    alt={service.title}
+                    src={eventType.image}
+                    alt={eventType.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mb-3">
-                    {service.title}
+                    {eventType.title}
                   </h3>
                   <p className="text-gray-300 leading-relaxed">
-                    {service.description}
+                    {eventType.description}
                   </p>
                 </div>
                 <div className="mt-6">
-                  <Link href={`/about/whatwedo/${service.href}`}
+                  <Link
+                    href={`#`}
                     className="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium 
                     hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-0.5 transition-all duration-200"
                   >
@@ -126,6 +126,6 @@ const Wedo: FC = () => {
       </motion.div>
     </div>
   );
-}
+};
 
 export default Wedo;
